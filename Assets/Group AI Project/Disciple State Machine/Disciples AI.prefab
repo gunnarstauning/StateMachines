@@ -43,6 +43,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95601049054755912, guid: 54af035e3c52b1b4c9044d1675898bcf,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: b235179bd2a63d1468dd430670338c55, type: 3}
     - target: {fileID: 114234724232833038, guid: 54af035e3c52b1b4c9044d1675898bcf,
         type: 3}
       propertyPath: target
@@ -73,8 +78,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 114672847521876672, guid: 54af035e3c52b1b4c9044d1675898bcf,
         type: 3}
+      propertyPath: detectionRange
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114672847521876672, guid: 54af035e3c52b1b4c9044d1675898bcf,
+        type: 3}
       propertyPath: navPointsParent
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114672847521876672, guid: 54af035e3c52b1b4c9044d1675898bcf,
+        type: 3}
+      propertyPath: angerDetectionRange
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54af035e3c52b1b4c9044d1675898bcf, type: 3}

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MakeNavPoints : State {
+public class DiscipleMakeNavPoints : DiscipleState {
 
-    public MakeNavPoints(StateController stateController) : base(stateController) { }
+    public DiscipleMakeNavPoints(DiscipleStateController stateController) : base(stateController) { }
     int maxPoints = 0;
     int numPointsMade = 0;
     public override void CheckTransitions()
@@ -12,11 +12,11 @@ public class MakeNavPoints : State {
       
         if (stateController.CheckIfInRange("Player"))
         {
-            stateController.SetState(new ChaseState(stateController));
+            stateController.SetState(new DiscipleChaseState(stateController));
         }
         if (maxPoints < numPointsMade)
         {
-            stateController.SetState(new PatrolState(stateController));
+            stateController.SetState(new DisciplePatrolState(stateController));
         }
     }
     public override void Act()

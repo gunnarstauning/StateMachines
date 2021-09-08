@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class StateController : MonoBehaviour {
+public class DiscipleStateController : MonoBehaviour {
 
     public GameObject navPointsParent;
-    public State currentState;
+    public DiscipleState currentState;
     public GameObject[] navPoints;
     public GameObject enemyToChase;
     public int navPointNum;
@@ -15,7 +15,8 @@ public class StateController : MonoBehaviour {
     public UnityStandardAssets.Characters.ThirdPerson.AICharacterControl ai;
     public Renderer[] childrenRend;
     public GameObject[] enemies;
-    public float detectionRange = 5;
+    public float detectionRange = 10;
+    public float angerDetectionRange = 5;
     public GameObject wanderP;
     public GameObject newNavPoint;
     public GameObject ClonePrefab;
@@ -26,7 +27,7 @@ public class StateController : MonoBehaviour {
         navPoints = GameObject.FindGameObjectsWithTag("navpoint");
         ai = GetComponent<UnityStandardAssets.Characters.ThirdPerson.AICharacterControl>();
         childrenRend = GetComponentsInChildren<Renderer>();
-        SetState(new PatrolState(this));
+        SetState(new DisciplePatrolState(this));
     }
 
     void Update()
@@ -88,7 +89,24 @@ public class StateController : MonoBehaviour {
         return false;
     }
 
-    public void SetState(State state)
+    public bool CheckIfInAngerRange(string tag)
+    {
+        enemies = GameObject.FindGameObjectsWithTag(tag);
+        if (enemies != null)
+        {
+            foreach (GameObject g in enemies)
+            {
+                if (Vector3.Distance(g.transform.position, transform.position) < angerDetectionRange)
+                {
+                    enemyToChase = g;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void SetState(DiscipleState state)
     {
         if(currentState != null)
         {

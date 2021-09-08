@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State {
+public abstract class DiscipleState
+{
 
-    protected StateController stateController;
+    protected DiscipleStateController stateController;
     //constructor
-    public State(StateController stateController)
+    public DiscipleState(DiscipleStateController stateController)
     {
         this.stateController = stateController;
     }

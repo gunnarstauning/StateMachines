@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseState : State {
+public class DiscipleChaseState : DiscipleState {
 
-    public ChaseState(StateController stateController) : base(stateController) { }
+    public DiscipleChaseState(DiscipleStateController stateController) : base(stateController) { }
 
     public override void CheckTransitions()
     {
         if (!stateController.CheckIfInRange("Player"))
         {
-            stateController.SetState(new WanderState(stateController));
+            stateController.SetState(new DiscipleWanderState(stateController));
+        }
+        if (stateController.CheckIfInAngerRange("Player"))
+        {
+            stateController.SetState(new DiscipleAngryState(stateController));
         }
     }
     public override void Act()

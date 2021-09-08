@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolState : State {
+public class DisciplePatrolState : DiscipleState {
 
 
-    public PatrolState(StateController stateController) : base(stateController) { }
+    public DisciplePatrolState(DiscipleStateController stateController) : base(stateController) { }
    
     public override void CheckTransitions()
     {
         if (stateController.CheckIfInRange("Player"))
         {
-            stateController.SetState(new ChaseState(stateController));
+            stateController.SetState(new DiscipleChaseState(stateController));
         }
         
     }

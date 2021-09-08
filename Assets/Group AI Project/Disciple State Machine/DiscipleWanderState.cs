@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReproduceState : State
+public class DiscipleWanderState : DiscipleState
 {
 
-    public ReproduceState(StateController stateController) : base(stateController) { }
 
+    public DiscipleWanderState(DiscipleStateController stateController) : base(stateController) { }
 
     float timeLimit;
     float timer;
-    Vector3 clone;
-
     public override void CheckTransitions()
     {
+        if (stateController.CheckIfInRange("Player"))
+        {
+            stateController.SetState(new DiscipleChaseState(stateController));
+        }
         if (timer > timeLimit)
         {
-            clone = stateController.GetRandomPoint();
-            stateController.Reproduce(clone);
-            stateController.SetState(new MakeNavPoints(stateController));
+            stateController.SetState(new DiscipleReproduceState(stateController));
         }
 
     }
@@ -34,13 +34,13 @@ public class ReproduceState : State
     public override void OnStateEnter()
     {
         timer = 0f;
-        timeLimit = 2f;
+        timeLimit = 5f;
         stateController.destination = stateController.GetWanderPoint();
         if (stateController.ai.agent != null)
         {
             stateController.ai.agent.speed = .2f;
         }
         stateController.ai.SetTarget(stateController.destination);
-        stateController.ChangeColor(Color.yellow);
+        stateController.ChangeColor(Color.cyan);
     }
 }
