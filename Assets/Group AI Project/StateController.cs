@@ -18,6 +18,7 @@ public class StateController : MonoBehaviour {
     public float detectionRange = 5;
     public GameObject wanderP;
     public GameObject newNavPoint;
+    public GameObject ClonePrefab;
 
 
     void Start()
@@ -101,5 +102,10 @@ public class StateController : MonoBehaviour {
         {
             currentState.OnStateEnter();
         }
+    }
+
+    public void Reproduce(Vector3 cloneLocation)
+    {
+        Instantiate(ClonePrefab, new Vector3(cloneLocation.x, cloneLocation.y, cloneLocation.z), transform.rotation);
     }
 }
